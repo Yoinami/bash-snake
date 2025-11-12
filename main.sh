@@ -43,20 +43,34 @@ print_char() {
     fi
 }
 
+draw_a_line() {
+    echo -n "+"
+    for ((i=0; i < $num_columns; i ++)); do echo -n "-"; done
+    echo "+"
+}
+
 render() {
     y=$num_rows
+
+    draw_a_line
+
     while [ $y -gt 0 ]
     do 
+        echo -n "|"
         x=0
         while [ $x -lt $num_columns ]
         do 
             print_char $x $y
             ((x++))
         done
+        echo -e -n "|"
         echo -e ""
         ((y--))
     done
-    echo -e "\e[$((num_rows + 1))A"
+
+    draw_a_line
+
+    echo -e "\e[$((num_rows + 3))A"
 }
 
 handle_input() {
