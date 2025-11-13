@@ -37,15 +37,15 @@ print_char() {
     local y="$2"
 
     if queue_find snake_position_x $x && queue_find snake_position_y $y; then
-        echo -e -n "x"
+        echo -e -n "x "
     else
-        echo -e -n " "
+        echo -e -n "  "
     fi
 }
 
 draw_a_line() {
     echo -n "+"
-    for ((i=0; i < $num_columns; i ++)); do echo -n "-"; done
+    for ((i=0; i < $num_columns * 2; i ++)); do echo -n "-"; done
     echo "+"
 }
 
